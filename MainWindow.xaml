@@ -1,0 +1,118 @@
+<Window x:Class="PatchHealthCheck.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PatchHealthCheck"
+        mc:Ignorable="d"
+        Title="Patch Health Check" Height="760" Width="1180"
+        Background="#F4F6F8" FontFamily="Segoe UI">
+    <Window.Resources>
+        <Style x:Key="SectionHeader" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="#374151"/>
+            <Setter Property="Margin" Value="0,12,0,6"/>
+        </Style>
+        <Style x:Key="ActionButton" TargetType="Button">
+            <Setter Property="Padding" Value="12,8"/>
+            <Setter Property="Margin" Value="0,4,0,0"/>
+            <Setter Property="Background" Value="#2563EB"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+        </Style>
+        <Style x:Key="SecondaryButton" TargetType="Button" BasedOn="{StaticResource ActionButton}">
+            <Setter Property="Background" Value="#6B7280"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="16">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="340"/>
+            <ColumnDefinition Width="16"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Left panel: configuration -->
+        <Border Grid.Column="0" Background="White" CornerRadius="8" Padding="16">
+            <StackPanel>
+                <TextBlock Text="Patch Health Check" FontSize="18" FontWeight="Bold" Foreground="#111827"/>
+                <TextBlock Text="Snapshot servers before/after patching and diff the results." FontSize="11" Foreground="#6B7280" Margin="0,2,0,0" TextWrapping="Wrap"/>
+
+                <TextBlock Text="Servers (one per line, or hostname,IP)" Style="{StaticResource SectionHeader}"/>
+                <TextBox x:Name="ServersTextBox" Height="110" AcceptsReturn="True" TextWrapping="Wrap"
+                         VerticalScrollBarVisibility="Auto" FontFamily="Consolas" FontSize="12"
+                         Text="localhost"/>
+                <Button Content="Import server list from file..." Style="{StaticResource SecondaryButton}" Click="ImportServers_Click" Margin="0,6,0,0"/>
+
+                <TextBlock Text="Credentials (leave blank to use current user)" Style="{StaticResource SectionHeader}"/>
+                <TextBox x:Name="UsernameTextBox" Margin="0,0,0,6" Padding="4" ToolTip="DOMAIN\username"/>
+                <PasswordBox x:Name="PasswordBox" Padding="4"/>
+
+                <TextBlock Text="Snapshot folder" Style="{StaticResource SectionHeader}"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="SnapshotFolderTextBox" Grid.Column="0" Padding="4" IsReadOnly="True"/>
+                    <Button Grid.Column="1" Content="..." Width="32" Margin="4,0,0,0" Click="BrowseFolder_Click"/>
+                </Grid>
+
+                <TextBlock Text="Actions" Style="{StaticResource SectionHeader}"/>
+                <Button x:Name="CaptureBeforeButton" Content="1. Capture BEFORE snapshot" Style="{StaticResource ActionButton}" Click="CaptureBefore_Click"/>
+                <Button x:Name="CaptureAfterButton" Content="2. Capture AFTER snapshot" Style="{StaticResource ActionButton}" Click="CaptureAfter_Click" Background="#7C3AED"/>
+                <Button x:Name="CompareButton" Content="3. Compare &amp; generate report" Style="{StaticResource ActionButton}" Click="Compare_Click" Background="#059669"/>
+                <Button x:Name="OpenReportButton" Content="Open last HTML report" Style="{StaticResource SecondaryButton}" Click="OpenReport_Click"/>
+
+                <TextBlock Text="Progress" Style="{StaticResource SectionHeader}"/>
+                <ProgressBar x:Name="ProgressBarCtl" Height="8" Minimum="0" Maximum="100"/>
+                <TextBlock x:Name="StatusText" Text="Idle" FontSize="11" Foreground="#6B7280" Margin="0,4,0,0"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Right panel: results + log -->
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="8"/>
+                <RowDefinition Height="220"/>
+            </Grid.RowDefinitions>
+
+            <Border Grid.Row="0" Background="White" CornerRadius="8" Padding="12">
+                <DockPanel>
+                    <TextBlock DockPanel.Dock="Top" Text="Server Summary" FontWeight="SemiBold" Margin="0,0,0,8"/>
+                    <DataGrid x:Name="SummaryGrid" AutoGenerateColumns="False" IsReadOnly="True"
+                              CanUserAddRows="False" GridLinesVisibility="Horizontal"
+                              HeadersVisibility="Column" RowHeight="28">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Server" Binding="{Binding ServerName}" Width="180"/>
+                            <DataGridTextColumn Header="Before" Binding="{Binding BeforeStatus}" Width="100"/>
+                            <DataGridTextColumn Header="After" Binding="{Binding AfterStatus}" Width="100"/>
+                            <DataGridTextColumn Header="Total Changes" Binding="{Binding TotalChanges}" Width="120"/>
+                            <DataGridTextColumn Header="Services" Binding="{Binding ServiceChanges}" Width="90"/>
+                            <DataGridTextColumn Header="Processes" Binding="{Binding ProcessChanges}" Width="90"/>
+                            <DataGridTextColumn Header="Users" Binding="{Binding UserChanges}" Width="80"/>
+                            <DataGridTextColumn Header="Hotfixes" Binding="{Binding HotfixChanges}" Width="80"/>
+                            <DataGridTextColumn Header="Tasks" Binding="{Binding TaskChanges}" Width="80"/>
+                            <DataGridTextColumn Header="New Errors" Binding="{Binding ErrorEvents}" Width="90"/>
+                            <DataGridTextColumn Header="Uptime (After)" Binding="{Binding AfterUptime}" Width="110"/>
+                            <DataGridTextColumn Header="Health" Binding="{Binding HealthStatus}" Width="190"/>
+                            <DataGridTextColumn Header="Status" Binding="{Binding OverallLabel}" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </DockPanel>
+            </Border>
+
+            <Border Grid.Row="2" Background="White" CornerRadius="8" Padding="12">
+                <DockPanel>
+                    <TextBlock DockPanel.Dock="Top" Text="Activity Log" FontWeight="SemiBold" Margin="0,0,0,8"/>
+                    <TextBox x:Name="LogTextBox" IsReadOnly="True" FontFamily="Consolas" FontSize="11"
+                             VerticalScrollBarVisibility="Auto" TextWrapping="NoWrap"/>
+                </DockPanel>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>
