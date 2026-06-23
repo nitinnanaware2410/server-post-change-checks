@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PatchHealthCheck"
         mc:Ignorable="d"
         Title="Patch Health Check" Height="760" Width="1180"
-        Background="#F4F6F8" FontFamily="Segoe UI">
+        Background="#F4F6F8" FontFamily="Segoe UI" Icon="Assets/AppIcon.ico">
     <Window.Resources>
         <Style x:Key="SectionHeader" TargetType="TextBlock">
             <Setter Property="FontSize" Value="13"/>
