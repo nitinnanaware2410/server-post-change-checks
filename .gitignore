@@ -1,8 +1,4 @@
 bin/
 obj/
-publish/
-publish_new/
-publish_v2/
-publish_v3/
-publish_v4/
+publish-*/
 *.user
