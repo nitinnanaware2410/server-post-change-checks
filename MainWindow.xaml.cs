@@ -28,6 +28,9 @@ public partial class MainWindow : Window
         InitializeComponent();
         Directory.CreateDirectory(_snapshotFolder);
         SnapshotFolderTextBox.Text = _snapshotFolder;
+
+        var version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+        VersionText.Text = version == null ? "" : $"v{version.Major}.{version.Minor}.{version.Build}";
     }
 
     private List<string> GetServerList()

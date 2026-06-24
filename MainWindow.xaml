@@ -38,7 +38,8 @@
         <!-- Left panel: configuration -->
         <Border Grid.Column="0" Background="White" CornerRadius="8" Padding="16">
             <StackPanel>
-                <TextBlock Text="Server Post Change Checks" FontSize="18" FontWeight="Bold" Foreground="#111827"/>
+                <TextBlock x:Name="VersionText" Text="v0.0.0" FontSize="11" FontWeight="SemiBold" Foreground="#9CA3AF" HorizontalAlignment="Left"/>
+                <TextBlock Text="Server Post Change Checks" FontSize="18" FontWeight="Bold" Foreground="#111827" Margin="0,2,0,0"/>
                 <TextBlock Text="Snapshot servers before/after patching and diff the results." FontSize="11" Foreground="#6B7280" Margin="0,2,0,0" TextWrapping="Wrap"/>
 
                 <TextBlock Text="Servers (one per line, or hostname,IP)" Style="{StaticResource SectionHeader}"/>

@@ -9,6 +9,9 @@
     <AssemblyName>ServerPostChangeChecks</AssemblyName>
     <RootNamespace>ServerPostChangeChecks</RootNamespace>
     <ApplicationIcon>Assets\AppIcon.ico</ApplicationIcon>
+    <Version>2.2.0</Version>
+    <AssemblyVersion>2.2.0.0</AssemblyVersion>
+    <FileVersion>2.2.0.0</FileVersion>
     <SelfContained>false</SelfContained>
     <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
