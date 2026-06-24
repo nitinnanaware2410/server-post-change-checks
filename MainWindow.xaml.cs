@@ -30,7 +30,7 @@ public partial class MainWindow : Window
         SnapshotFolderTextBox.Text = _snapshotFolder;
 
         var version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
-        VersionText.Text = version == null ? "" : $"v{version.Major}.{version.Minor}.{version.Build}";
+        VersionText.Text = version == null ? "" : $"Version - {version.Major}.{version.Minor}.{version.Build}";
     }
 
     private List<string> GetServerList()
