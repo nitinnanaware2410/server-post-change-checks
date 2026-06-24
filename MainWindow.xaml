@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ServerPostChangeChecks"
         mc:Ignorable="d"
         Title="Server Post Change Checks" Height="760" Width="1180"
-        Background="#F4F6F8" FontFamily="Segoe UI" Icon="Assets/AppIcon.ico">
+        Background="#F4F6F8" FontFamily="Segoe UI">
     <Window.Resources>
         <Style x:Key="SectionHeader" TargetType="TextBlock">
             <Setter Property="FontSize" Value="13"/>
