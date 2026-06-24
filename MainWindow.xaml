@@ -62,8 +62,8 @@
                 </Grid>
 
                 <TextBlock Text="Actions" Style="{StaticResource SectionHeader}"/>
-                <Button x:Name="CaptureBeforeButton" Content="1. Capture BEFORE snapshot" Style="{StaticResource ActionButton}" Click="CaptureBefore_Click"/>
-                <Button x:Name="CaptureAfterButton" Content="2. Capture AFTER snapshot" Style="{StaticResource ActionButton}" Click="CaptureAfter_Click" Background="#7C3AED"/>
+                <Button x:Name="CaptureBeforeButton" Content="1. Capture before Change" Style="{StaticResource ActionButton}" Click="CaptureBefore_Click"/>
+                <Button x:Name="CaptureAfterButton" Content="2. Capture after Change" Style="{StaticResource ActionButton}" Click="CaptureAfter_Click" Background="#7C3AED"/>
                 <Button x:Name="CompareButton" Content="3. Compare &amp; generate report" Style="{StaticResource ActionButton}" Click="Compare_Click" Background="#059669"/>
                 <Button x:Name="OpenReportButton" Content="Open last HTML report" Style="{StaticResource SecondaryButton}" Click="OpenReport_Click"/>
 
