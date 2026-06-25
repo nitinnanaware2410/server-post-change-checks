@@ -50,6 +50,7 @@
                 </Grid>
                 <TextBlock Text="Server Post Change Checks" FontSize="18" FontWeight="Bold" Foreground="#111827" Margin="0,2,0,0"/>
                 <TextBlock Text="Snapshot servers before/after patching and diff the results." FontSize="11" Foreground="#6B7280" Margin="0,2,0,0" TextWrapping="Wrap"/>
+                <TextBlock Text="Snapshots are for comparison only - not a backup, and cannot restore the system. Click Help for details." FontSize="10.5" FontStyle="Italic" Foreground="#9CA3AF" Margin="0,2,0,0" TextWrapping="Wrap"/>
 
                 <TextBlock Text="Servers (one per line, or hostname,IP)" Style="{StaticResource SectionHeader}"/>
                 <TextBox x:Name="ServersTextBox" Height="110" AcceptsReturn="True" TextWrapping="Wrap"

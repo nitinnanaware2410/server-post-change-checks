@@ -26,6 +26,7 @@ public static class HtmlReportBuilder
   <span><b>Generated:</b> {DateTime.Now:g}</span>
   <span><b>Servers:</b> {reports.Count}</span>
 </div>
+<div class='disclaimer'><b>Note:</b> this report compares point-in-time configuration snapshots. It is not a backup and cannot be used to restore the system - use your normal backup/restore process for rollbacks.</div>
 <div class='summary-grid'>");
 
         foreach (var r in reports.OrderByDescending(r => r.TotalChanges))
@@ -105,6 +106,7 @@ body { font-family: Segoe UI, Arial, sans-serif; background:#f4f6f8; color:#1f29
 .wrap { max-width: 1200px; margin: 0 auto; padding: 24px; }
 h1 { margin-bottom: 4px; }
 .meta { display:flex; gap:24px; flex-wrap:wrap; color:#4b5563; margin-bottom:20px; font-size:14px; }
+.disclaimer { background:#FEF3C7; border:1px solid #F59E0B; color:#92400E; border-radius:6px; padding:10px 14px; font-size:13px; margin-bottom:20px; }
 .summary-grid { display:flex; flex-wrap:wrap; gap:12px; margin-bottom:32px; }
 .summary-card { display:block; text-decoration:none; min-width:160px; padding:14px 16px; border-radius:8px; box-shadow:0 1px 3px rgba(0,0,0,.1); }
 .summary-card.clean { background:#e8f5e9; color:#1b5e20; }

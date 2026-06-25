@@ -37,6 +37,13 @@
                 <TextBlock Text="Server Post Change Checks - Help" FontSize="20" FontWeight="Bold" Foreground="#111827"/>
                 <TextBlock Style="{StaticResource Body}" Text="This tool snapshots a server's state before and after a change (e.g. patching), then highlights exactly what's different - so you can tell at a glance whether the change broke anything." Margin="0,6,0,0"/>
 
+                <Border Background="#FEF3C7" BorderBrush="#F59E0B" BorderThickness="1" CornerRadius="6" Padding="10" Margin="0,10,0,0">
+                    <TextBlock TextWrapping="Wrap" FontSize="12.5" Foreground="#92400E">
+                        <Run Text="Important: " FontWeight="Bold"/>
+                        <Run Text="A snapshot is a point-in-time record of the system's configuration for comparison purposes only. It is NOT a backup and cannot be used to restore the system. If a change needs to be rolled back, use your normal backup/restore, snapshot/VM-checkpoint, or change-management process - this tool only tells you what changed, it does not undo anything."/>
+                    </TextBlock>
+                </Border>
+
                 <TextBlock Text="Recommended workflow" Style="{StaticResource H1}"/>
                 <TextBlock Style="{StaticResource Body}" Text="1. Enter the server(s) you're about to change, and credentials if needed."/>
                 <TextBlock Style="{StaticResource Body}" Text="2. Click 'Capture before Change' - BEFORE you patch/restart/deploy anything."/>
